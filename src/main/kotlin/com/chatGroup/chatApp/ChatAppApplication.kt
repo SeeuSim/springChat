@@ -1,6 +1,7 @@
 package com.chatGroup.chatApp
 
 import jakarta.jms.ConnectionFactory
+import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer
 import org.springframework.boot.runApplication
@@ -43,9 +44,7 @@ fun main(args: Array<String>) {
 
 	val jmsTemplate = context.getBean(JmsTemplate::class.java)
 
-	// Send a message with a POJO - the template reuse the message converter
-
-	// Send a message with a POJO - the template reuse the message converter
-	println("Sending an email message.")
+	val logger = LoggerFactory.getLogger(ChatAppApplication::class.java)
+	logger.info("==> Sending a chat message")
 	jmsTemplate.convertAndSend("mailbox", Message("@zuckerberg", "Hello"))
 }

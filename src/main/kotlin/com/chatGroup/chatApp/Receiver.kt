@@ -1,5 +1,6 @@
 package com.chatGroup.chatApp
 
+import org.slf4j.LoggerFactory
 import org.springframework.jms.annotation.JmsListener
 import org.springframework.stereotype.Component
 
@@ -11,6 +12,7 @@ class Receiver {
         containerFactory = "myFactory"
     )
     fun receiveMessage(message: Message) {
-        println("Received: {" + message + "}")
+        val logger = LoggerFactory.getLogger(Receiver::class.java)
+        logger.info("==> Received: {$message}")
     }
 }
